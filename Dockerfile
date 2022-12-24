@@ -1,4 +1,5 @@
-FROM debian:latest
+FROM python:3.10-alpine
+
 	
 RUN apt update && apt upgrade -y
 RUN pip3 install -U pip
