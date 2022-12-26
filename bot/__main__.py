@@ -30,7 +30,7 @@ def forward_message(message, target_chat_id, app):
     send_message(message, target_chat_id,  app, invite_link=invite_link)
 
 
-@ app.on_message(filters.user(sudo_users) & filters.command(["fwd", "forward"]), group=1)
+@app.on_message(filters.user(sudo_users) & filters.command(["fwd", "forward"]), group=1)
 def forward(app, message):
     if len(message.command) > 1:
         chat_id = get_formatted_chat(message.command[1], app)
@@ -42,7 +42,7 @@ def forward(app, message):
                     limit = int(message.command[2])
                 if len(message.command) > 3:
                     offset_id = int(message.command[3])
-                for msg in app.iter_history(chat_id, limit=limit, offset_id=offset_id):
+                for msg in app.get_chat_history(chat_id, limit=limit, offset_id=offset_id):
                     msg.copy(message.chat.id)
                     sleep(random.randint(1, 10))
             except Exception as e:
