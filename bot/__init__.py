@@ -46,7 +46,7 @@ except ValueError as e:
 
 if tg_session:
   LOG.info("Session Mode - {tg_session}")
-  app = Client(tg_session, api_id, api_hash)
+  app = Client(session_string=tg_session, api_id, api_hash)
 elif bot_token:
   LOG.info("Bot Mode")
   app = Client(":memory:", api_id, api_hash, bot_token=bot_token)
