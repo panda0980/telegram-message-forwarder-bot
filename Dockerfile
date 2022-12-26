@@ -1,12 +1,10 @@
-FROM python:3.9-slim-buster
+FROM python:3
 
-	
-RUN apt update && apt upgrade -y
-RUN pip3 install -U pip
-RUN mkdir /app/
-WORKDIR /app/
-COPY . /app/
+WORKDIR /usr/src/app
 
-RUN pip3 install -U -r requirements.txt
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3 -m bot"]
+COPY . .
+
+CMD [ "python3", "-m", "bot" ]
